@@ -2,8 +2,42 @@
   🎨 DESIGN SYSTEM GENERATOR - GETTING STARTED
 ═══════════════════════════════════════════════════════════════
 
-📋 SIMPLE INSTRUCTIONS FOR NON-TECHNICAL USERS
+📋 CHOOSE ONE INSTALLATION METHOD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+METHOD 1: DOCKER (RECOMMENDED - EASIEST!)
+
+FIRST TIME ONLY:
+
+1. Install Docker Desktop
+   ✦ Go to: https://www.docker.com/products/docker-desktop
+   ✦ Download for your system (Windows/Mac/Linux)
+   ✦ Install it (keep all defaults)
+   ✦ Open Docker Desktop and wait for it to start
+
+EVERY TIME YOU USE THE APP:
+
+   FOR WINDOWS:
+   ✦ Double-click: docker-start.bat
+
+   FOR MAC:
+   ✦ Double-click: docker-start.sh
+   ✦ (or right-click → Open With → Terminal)
+
+   FOR LINUX:
+   ✦ Type: ./docker-start.sh
+
+   ⚠️  First time takes 2-5 minutes to download
+   ⚠️  After that, starts in seconds!
+
+TO STOP THE APP:
+   ✦ Double-click: docker-stop.bat (Windows)
+   ✦ Run: ./docker-stop.sh (Mac/Linux)
+   ✦ Or press Ctrl+C in the window
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+METHOD 2: NODE.JS (ALTERNATIVE)
 
 FIRST TIME ONLY:
 
@@ -28,8 +62,6 @@ FIRST TIME ONLY:
    ✦ Open Terminal here
    ✦ Type: ./install.sh
    ✦ Wait 2-5 minutes
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 EVERY TIME YOU USE THE APP:
 

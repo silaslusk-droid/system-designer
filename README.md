@@ -6,59 +6,75 @@ A user-friendly tool for designers to create, customize, and export complete des
 
 ---
 
-## 📥 Installation (Non-Technical Users)
+## 📥 Installation (Choose ONE Method)
 
-### Step 1: Install Node.js (One-Time Setup)
+### 🐳 Method 1: Docker Desktop (RECOMMENDED - EASIEST!)
 
-Before using this app, you need Node.js installed on your computer:
+**This is the simplest way!** No Node.js installation needed.
+
+#### Step 1: Install Docker Desktop (One-Time Setup)
+
+1. **Visit**: [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+2. **Download** Docker Desktop for your system (Mac/Windows/Linux)
+3. **Install** and follow the prompts
+4. **Open Docker Desktop** and wait for it to start
+   - Look for the Docker whale icon in your menu bar (Mac) or system tray (Windows)
+   - Wait until it says "Docker Desktop is running"
+
+#### Step 2: Run the App
+
+**Windows:**
+- Double-click `docker-start.bat`
+
+**Mac:**
+- Double-click `docker-start.sh`
+- If blocked, right-click → Open With → Terminal
+
+**Linux:**
+- Run: `./docker-start.sh`
+
+**That's it!** The app will open in your browser at `http://localhost:5173`
+
+⚠️ **First time takes 2-5 minutes** to download and build. After that, it starts in seconds!
+
+#### To Stop the App:
+- **Windows**: Double-click `docker-stop.bat` (or press Ctrl+C in the window)
+- **Mac/Linux**: Run `./docker-stop.sh` (or press Ctrl+C)
+
+---
+
+### 💻 Method 2: Node.js (Alternative)
+
+If you prefer not to use Docker, you can install with Node.js:
+
+#### Step 1: Install Node.js (One-Time Setup)
 
 1. **Visit**: [https://nodejs.org/](https://nodejs.org/)
 2. **Download** the **LTS version** (the green button)
 3. **Run the installer** and follow the prompts (keep all default settings)
 4. **Restart your computer** after installation
 
-**That's it!** You only need to do this once.
+#### Step 2: Install the App
 
----
+**Windows:**
+- Double-click `install.bat`
 
-### Step 2: Install the App
+**Mac:**
+- Double-click `install.sh`
+- If blocked, right-click → Open With → Terminal
 
-#### 🍎 **For Mac Users:**
+**Linux:**
+- Run: `./install.sh`
 
-1. Open the downloaded folder
-2. **Double-click** `install.sh`
-3. If it says "cannot be opened", do this:
-   - Right-click `install.sh`
-   - Select "Open With" → "Terminal"
-4. Wait for installation to complete (2-5 minutes)
+Wait 2-5 minutes for installation to complete.
 
-#### 🪟 **For Windows Users:**
+#### Step 3: Run the App
 
-1. Open the downloaded folder
-2. **Double-click** `install.bat`
-3. Wait for installation to complete (2-5 minutes)
-4. If Windows asks for permission, click "Yes"
+**Windows:** Double-click `start.bat`
+**Mac:** Double-click `start.sh` (or right-click → Open With → Terminal)
+**Linux:** Run `./start.sh`
 
-#### 🐧 **For Linux Users:**
-
-1. Open Terminal in the downloaded folder
-2. Run: `./install.sh`
-3. Wait for installation to complete
-
----
-
-### Step 3: Run the App
-
-#### 🍎 **Mac:**
-- Double-click `start.sh` (or right-click → Open With → Terminal)
-
-#### 🪟 **Windows:**
-- Double-click `start.bat`
-
-#### 🐧 **Linux:**
-- Run: `./start.sh`
-
-**The app will open automatically in your browser at `http://localhost:5173`**
+**The app will open at `http://localhost:5173`**
 
 ⚠️ **Important**: Keep the terminal window open while using the app!
 
