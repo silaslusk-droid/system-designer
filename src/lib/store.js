@@ -13,19 +13,11 @@ const useStore = create(
       settings: {
         projectName: 'My Design System',
         logoUrl: '',
-        githubToken: '',
-        githubRepo: '',
-        authorName: 'Designer',
-        authorEmail: 'designer@local',
       },
 
       // UI State
       darkMode: false,
       sidebarOpen: true,
-      searchQuery: '',
-
-      // Generated Components (from AI)
-      generatedComponents: [],
 
       // Actions: Design Systems
       addDesignSystem: (system) => {
@@ -96,19 +88,6 @@ const useStore = create(
         state.updateDesignSystem(activeSystem.id, { typography: updatedTypography });
       },
 
-      updateSpacing: (updates) => {
-        const state = get();
-        const activeSystem = state.getActiveSystem();
-        if (!activeSystem) return;
-
-        const updatedSpacing = {
-          ...activeSystem.spacing,
-          ...updates,
-        };
-
-        state.updateDesignSystem(activeSystem.id, { spacing: updatedSpacing });
-      },
-
       // Actions: Settings
       updateSettings: (updates) => {
         set((state) => ({
@@ -118,35 +97,20 @@ const useStore = create(
 
       // Actions: UI State
       toggleDarkMode: () => {
-        set((state) => ({ darkMode: !state.darkMode }));
+        set((state) => {
+          const newMode = !state.darkMode;
+          // Update document class
+          if (newMode) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          return { darkMode: newMode };
+        });
       },
 
       toggleSidebar: () => {
         set((state) => ({ sidebarOpen: !state.sidebarOpen }));
-      },
-
-      setSearchQuery: (query) => {
-        set({ searchQuery: query });
-      },
-
-      // Actions: Generated Components
-      addGeneratedComponent: (component) => {
-        set((state) => ({
-          generatedComponents: [
-            ...state.generatedComponents,
-            { ...component, id: Date.now().toString() },
-          ],
-        }));
-      },
-
-      removeGeneratedComponent: (id) => {
-        set((state) => ({
-          generatedComponents: state.generatedComponents.filter((comp) => comp.id !== id),
-        }));
-      },
-
-      clearGeneratedComponents: () => {
-        set({ generatedComponents: [] });
       },
 
       // Initialize with predefined systems

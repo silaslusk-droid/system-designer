@@ -6,7 +6,7 @@ import SettingsPage from './app/settings/page';
 import DocsPage from './app/docs/page';
 import useStore from './lib/store';
 import { predefinedSystems } from './data/predefined';
-import './index.css';
+import './styles.css';
 
 function App() {
   const { darkMode, initializePredefined } = useStore();
@@ -33,14 +33,7 @@ function App() {
       'Open+Sans:wght@400;600;700',
       'Lato:wght@400;700',
       'Montserrat:wght@400;600;700',
-      'Oswald:wght@400;600',
-      'Raleway:wght@400;600;700',
       'Poppins:wght@400;600;700',
-      'Playfair+Display:wght@400;700',
-      'Lora:wght@400;600',
-      'Merriweather:wght@400;700',
-      'Source+Sans+Pro:wght@400;600',
-      'Nunito:wght@400;600;700',
     ];
 
     const link = document.createElement('link');

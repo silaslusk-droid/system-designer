@@ -1,9 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
-import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '../../components/ui/alert';
-import { Badge } from '../../components/ui/badge';
 import useStore from '../../lib/store';
 
 export default function DocsPage() {
@@ -13,16 +9,14 @@ export default function DocsPage() {
 
   if (!activeSystem) {
     return (
-      <div className="container mx-auto p-8">
-        <Alert>
-          <AlertTitle>No Active Design System</AlertTitle>
-          <AlertDescription>
-            Please select or create a design system first.
-          </AlertDescription>
-        </Alert>
-        <Button className="mt-4" onClick={() => navigate('/')}>
+      <div className="main-content">
+        <div className="alert alert-warning">
+          <h3>No Active Design System</h3>
+          <p>Please select or create a design system first.</p>
+        </div>
+        <button className="btn btn-primary mt-md" onClick={() => navigate('/')}>
           Go to Generator
-        </Button>
+        </button>
       </div>
     );
   }
@@ -33,59 +27,38 @@ export default function DocsPage() {
   const baseFontSize = activeSystem.typography?.baseFontSize || 16;
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-white dark:bg-gray-900 sticky top-0 z-10">
-        <div className="container mx-auto px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {settings.logoUrl && (
-              <img src={settings.logoUrl} alt="Logo" className="h-8 w-auto" />
-            )}
-            <h1 className="text-2xl font-bold" style={{ fontFamily: headingFont }}>
-              {settings.projectName}
-            </h1>
+    <div style={{ fontFamily: bodyFont, fontSize: baseFontSize + 'px' }}>
+      <header style={{ background: 'white', borderBottom: '1px solid var(--border)', padding: '1rem 0', position: 'sticky', top: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {settings.logoUrl && <img src={settings.logoUrl} alt="Logo" style={{ height: '2rem' }} />}
+            <h1 style={{ fontFamily: headingFont, fontSize: '1.5rem', margin: 0 }}>{settings.projectName}</h1>
           </div>
-          <Button variant="ghost" onClick={() => navigate('/')}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
+          <button className="btn btn-secondary" onClick={() => navigate('/')}>
+            <ArrowLeft size={16} style={{ marginRight: '0.5rem' }} />
             Back to Generator
-          </Button>
+          </button>
         </div>
       </header>
 
-      <div className="container mx-auto p-8" style={{ fontFamily: bodyFont, fontSize: `${baseFontSize}px` }}>
-        {/* Introduction */}
-        <section className="mb-12">
-          <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: headingFont }}>
-            {activeSystem.name}
-          </h2>
-          <p className="text-lg text-muted-foreground">{activeSystem.description}</p>
-          <p className="text-sm text-muted-foreground mt-2">
-            Last updated: {new Date(activeSystem.updatedAt).toLocaleDateString()}
-          </p>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem' }}>
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontFamily: headingFont, fontSize: '2.5rem', marginBottom: '1rem' }}>{activeSystem.name}</h2>
+          <p className="text-lg text-muted">{activeSystem.description}</p>
+          <p className="text-sm text-muted">Last updated: {new Date(activeSystem.updatedAt).toLocaleDateString()}</p>
         </section>
 
-        {/* Colors */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: headingFont }}>
-            Color Palette
-          </h2>
-
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontFamily: headingFont, marginBottom: '1.5rem' }}>Color Palette</h2>
           {activeSystem.colors && Object.entries(activeSystem.colors).map(([colorName, shades]) => (
-            <div key={colorName} className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 capitalize" style={{ fontFamily: headingFont }}>
-                {colorName}
-              </h3>
-              <div className="grid grid-cols-11 gap-2">
-                {Object.entries(shades).map(([shade, hex]) => (
-                  <div key={shade} className="space-y-2">
-                    <div
-                      className="h-24 rounded-lg shadow-md border"
-                      style={{ backgroundColor: hex }}
-                    />
-                    <div className="text-center">
-                      <p className="text-xs font-semibold">{shade}</p>
-                      <p className="text-xs text-muted-foreground">{hex}</p>
-                    </div>
+            <div key={colorName} style={{ marginBottom: '2rem' }}>
+              <h3 style={{ fontFamily: headingFont, marginBottom: '1rem', textTransform: 'capitalize' }}>{colorName}</h3>
+              <div className="color-swatches">
+                {Object.entries(shades).slice(0, 11).map(([shade, hex]) => (
+                  <div key={shade}>
+                    <div className="color-swatch" style={{ background: hex }} />
+                    <div className="color-swatch-label">{shade}</div>
+                    <div className="color-swatch-label">{hex}</div>
                   </div>
                 ))}
               </div>
@@ -93,153 +66,68 @@ export default function DocsPage() {
           ))}
         </section>
 
-        {/* Typography */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: headingFont }}>
-            Typography
-          </h2>
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontFamily: headingFont, marginBottom: '1.5rem' }}>Typography</h2>
+          <div className="card" style={{ marginBottom: '1.5rem' }}>
+            <p className="text-sm text-muted">Heading Font</p>
+            <p style={{ fontFamily: headingFont, fontSize: '1.5rem', fontWeight: 700 }}>{activeSystem.typography?.headingFont}</p>
+            <p className="text-sm text-muted mt-md">Body Font</p>
+            <p style={{ fontFamily: bodyFont, fontSize: '1.25rem' }}>{activeSystem.typography?.bodyFont}</p>
+            <p className="text-sm text-muted mt-md">Base Font Size</p>
+            <p style={{ fontSize: '1.25rem' }}>{activeSystem.typography?.baseFontSize}px</p>
+          </div>
 
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Font Family</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div>
-                <p className="text-sm text-muted-foreground">Heading Font</p>
-                <p className="text-2xl font-bold" style={{ fontFamily: headingFont }}>
-                  {activeSystem.typography?.headingFont}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Body Font</p>
-                <p className="text-xl" style={{ fontFamily: bodyFont }}>
-                  {activeSystem.typography?.bodyFont}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Base Font Size</p>
-                <p className="text-xl">{activeSystem.typography?.baseFontSize}px</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: headingFont }}>
-              Type Scale
-            </h3>
-            <div className="space-y-4">
-              <div className="border-b pb-4">
-                <h1 className="text-5xl font-bold" style={{ fontFamily: headingFont }}>
-                  Heading 1
-                </h1>
-                <p className="text-sm text-muted-foreground">5xl / 3rem</p>
-              </div>
-              <div className="border-b pb-4">
-                <h2 className="text-4xl font-bold" style={{ fontFamily: headingFont }}>
-                  Heading 2
-                </h2>
-                <p className="text-sm text-muted-foreground">4xl / 2.25rem</p>
-              </div>
-              <div className="border-b pb-4">
-                <h3 className="text-3xl font-semibold" style={{ fontFamily: headingFont }}>
-                  Heading 3
-                </h3>
-                <p className="text-sm text-muted-foreground">3xl / 1.875rem</p>
-              </div>
-              <div className="border-b pb-4">
-                <h4 className="text-2xl font-semibold" style={{ fontFamily: headingFont }}>
-                  Heading 4
-                </h4>
-                <p className="text-sm text-muted-foreground">2xl / 1.5rem</p>
-              </div>
-              <div className="border-b pb-4">
-                <p className="text-base" style={{ fontFamily: bodyFont }}>
-                  Body Text - The quick brown fox jumps over the lazy dog
-                </p>
-                <p className="text-sm text-muted-foreground">base / 1rem</p>
-              </div>
-              <div className="border-b pb-4">
-                <p className="text-sm" style={{ fontFamily: bodyFont }}>
-                  Small Text - The quick brown fox jumps over the lazy dog
-                </p>
-                <p className="text-sm text-muted-foreground">sm / 0.875rem</p>
-              </div>
+          <h3 style={{ fontFamily: headingFont, marginBottom: '1rem' }}>Type Scale</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+              <h1 style={{ fontFamily: headingFont }}>Heading 1</h1>
+              <p className="text-sm text-muted">5xl / 3rem</p>
+            </div>
+            <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+              <h2 style={{ fontFamily: headingFont }}>Heading 2</h2>
+              <p className="text-sm text-muted">4xl / 2.25rem</p>
+            </div>
+            <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+              <h3 style={{ fontFamily: headingFont }}>Heading 3</h3>
+              <p className="text-sm text-muted">3xl / 1.875rem</p>
+            </div>
+            <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
+              <p style={{ fontFamily: bodyFont }}>Body Text - The quick brown fox jumps over the lazy dog</p>
+              <p className="text-sm text-muted">base / 1rem</p>
             </div>
           </div>
         </section>
 
-        {/* Components */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: headingFont }}>
-            Components
-          </h2>
-
-          <div className="space-y-8">
-            {/* Buttons */}
+        <section style={{ marginBottom: '3rem' }}>
+          <h2 style={{ fontFamily: headingFont, marginBottom: '1.5rem' }}>Components</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div>
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: headingFont }}>
-                Buttons
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                <Button style={{ backgroundColor: brandColor }}>Primary</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="ghost">Ghost</Button>
-                <Button variant="destructive">Destructive</Button>
+              <h3 style={{ fontFamily: headingFont, marginBottom: '1rem' }}>Buttons</h3>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <button className="btn btn-primary" style={{ background: brandColor }}>Primary</button>
+                <button className="btn btn-secondary">Secondary</button>
               </div>
             </div>
 
-            {/* Badges */}
             <div>
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: headingFont }}>
-                Badges
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <Badge style={{ backgroundColor: brandColor }}>Default</Badge>
-                <Badge variant="secondary">Secondary</Badge>
-                <Badge variant="outline">Outline</Badge>
-                <Badge variant="destructive">Destructive</Badge>
+              <h3 style={{ fontFamily: headingFont, marginBottom: '1rem' }}>Badges</h3>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                <span className="badge" style={{ background: brandColor }}>Default</span>
+                <span className="badge badge-secondary">Secondary</span>
+                <span className="badge badge-success">Success</span>
+                <span className="badge badge-warning">Warning</span>
+                <span className="badge badge-error">Error</span>
               </div>
             </div>
 
-            {/* Cards */}
             <div>
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: headingFont }}>
-                Cards
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle style={{ fontFamily: headingFont }}>Card Title</CardTitle>
-                    <CardDescription>Card description goes here</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p style={{ fontFamily: bodyFont }}>
-                      This is the card content. It can contain any information.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-
-            {/* Alerts */}
-            <div>
-              <h3 className="text-xl font-semibold mb-4" style={{ fontFamily: headingFont }}>
-                Alerts
-              </h3>
-              <div className="space-y-4">
-                <Alert>
-                  <AlertTitle style={{ fontFamily: headingFont }}>Information</AlertTitle>
-                  <AlertDescription style={{ fontFamily: bodyFont }}>
-                    This is an informational alert message.
-                  </AlertDescription>
-                </Alert>
-                <Alert variant="destructive">
-                  <AlertTitle style={{ fontFamily: headingFont }}>Error</AlertTitle>
-                  <AlertDescription style={{ fontFamily: bodyFont }}>
-                    This is an error alert message.
-                  </AlertDescription>
-                </Alert>
+              <h3 style={{ fontFamily: headingFont, marginBottom: '1rem' }}>Cards</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+                <div className="card">
+                  <h4 style={{ fontFamily: headingFont, marginBottom: '0.5rem' }}>Card Title</h4>
+                  <p className="text-sm text-muted">Card description goes here</p>
+                  <p style={{ fontFamily: bodyFont, marginTop: '1rem' }}>This is the card content.</p>
+                </div>
               </div>
             </div>
           </div>
