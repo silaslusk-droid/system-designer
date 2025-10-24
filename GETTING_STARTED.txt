@@ -1,0 +1,80 @@
+═══════════════════════════════════════════════════════════════
+  🎨 DESIGN SYSTEM GENERATOR - GETTING STARTED
+═══════════════════════════════════════════════════════════════
+
+📋 SIMPLE INSTRUCTIONS FOR NON-TECHNICAL USERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FIRST TIME ONLY:
+
+1. Install Node.js
+   ✦ Go to: https://nodejs.org/
+   ✦ Download the green LTS button
+   ✦ Install it (keep all defaults)
+   ✦ Restart your computer
+
+2. Install This App
+
+   FOR WINDOWS:
+   ✦ Double-click: install.bat
+   ✦ Wait 2-5 minutes
+
+   FOR MAC:
+   ✦ Double-click: install.sh
+   ✦ If blocked, right-click → Open With → Terminal
+   ✦ Wait 2-5 minutes
+
+   FOR LINUX:
+   ✦ Open Terminal here
+   ✦ Type: ./install.sh
+   ✦ Wait 2-5 minutes
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+EVERY TIME YOU USE THE APP:
+
+   FOR WINDOWS:
+   ✦ Double-click: start.bat
+
+   FOR MAC:
+   ✦ Double-click: start.sh
+   ✦ (or right-click → Open With → Terminal)
+
+   FOR LINUX:
+   ✦ Type: ./start.sh
+
+   ⚠️  Keep the black window (terminal) open!
+   ⚠️  The app will open in your browser automatically
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+USING THE APP:
+
+1. Look at the left sidebar
+2. Click "New Design System" or choose an existing one
+3. Enter your colors (like #3b82f6)
+4. Choose your fonts
+5. See everything update live on the right!
+6. Click "Export" to get your design system
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TROUBLESHOOTING:
+
+❌ "Cannot find node"
+   → Install Node.js from nodejs.org
+
+❌ Browser doesn't open
+   → Open browser manually: http://localhost:5173
+
+❌ Permission error (Mac)
+   → Right-click script → Open With → Terminal
+
+❌ Still stuck?
+   → Check README.md for more help
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Need detailed help? Open README.md
+
+═══════════════════════════════════════════════════════════════
